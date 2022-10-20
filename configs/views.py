@@ -1,3 +1,4 @@
+from datetime import datetime
 from djangomongo import settings
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -24,7 +25,8 @@ class ConfigList(APIView):
     def post(self, request):
         config_serializer = ConfigSerializer(data=request.data)
         if config_serializer.is_valid():
-            self.collection.insert_one(config_serializer.data)
+            config_serializer.validated_data['created_at'] = datetime.now()
+            self.collection.insert_one(config_serializer.validated_data)
             return Response(config_serializer.data, status=status.HTTP_201_CREATED)
         return Response(config_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 

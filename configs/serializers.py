@@ -1,6 +1,5 @@
 from rest_framework import serializers
 
-
 class AttributeSerializer(serializers.Serializer):
     name = serializers.CharField(required=True)
     value = serializers.CharField(required=True)
@@ -17,6 +16,7 @@ class ConfigSerializer(serializers.Serializer):
     description = serializers.CharField(required=False)
     attributes = AttributeSerializer(many=True)
     created_at = serializers.DateTimeField(required=False)
+    updated_at = serializers.DateTimeField(required=False)
 
     def update(self, instance, validated_data):
         pass
