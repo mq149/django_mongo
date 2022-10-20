@@ -4,3 +4,4 @@ pymongo[snappy,gssapi,srv,tls]>=4.2,<4.3
 dnspython
 pytz
 django-environ
+django-cors-headers
